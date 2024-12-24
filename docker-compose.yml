@@ -1,7 +1,6 @@
 version: '3.8'
 
 services:
-  # Service pour MongoDB
   mongo:
     image: mongo:latest
     container_name: mongo-db
@@ -16,7 +15,6 @@ services:
     networks:
       - app-network
 
-  # Service pour l'application Node.js
   app:
     build:
       context: .
@@ -30,7 +28,7 @@ services:
       - ./src:/usr/src/app/src # Synchronisation du dossier src
     environment:
       PORT: 5001
-      MONGO_URI: mongodb://mongo-db:27017/${MONGO_INITDB_DATABASE}
+      MONGO_URI: mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@mongo:27017/${MONGO_INITDB_DATABASE}?authSource=admin
     networks:
       - app-network
 
