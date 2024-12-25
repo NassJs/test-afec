@@ -45,7 +45,7 @@ const updateProduct = async (req, res) => {
     if (stock) product.stock = stock;
 
     await product.save();
-    res.json(product);
+    res.status(200).json(product);
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
@@ -56,7 +56,7 @@ const deleteProduct = async (req, res) => {
   try {
     const product = await Product.findByIdAndDelete(req.params.id);
     if (!product) return res.status(404).json({ error: 'Product not found' });
-    res.json({ message: 'Product deleted successfully' });
+    res.status(202).json({ message: 'Product deleted successfully' });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
