@@ -23,9 +23,9 @@ services:
     depends_on:
       - mongo
     ports:
-      - "5001:5001" # Le port de votre application
+      - "5001:5001"
     volumes:
-      - ./src:/usr/src/app/src # Synchronisation du dossier src
+      - ./src:/usr/src/app/src
     environment:
       PORT: 5001
       MONGO_URI: mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@mongo:27017/${MONGO_INITDB_DATABASE}?authSource=admin
