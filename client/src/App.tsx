@@ -1,35 +1,62 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Button } from "./component/Button";
+import { Input } from "./component/Input";
+import "./App.css";
+import { useState } from "react";
+import process from "process";
+import.meta.env;
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [search, setSearch] = useState("");
+  const [movies, setMovies] = useState([]);
 
+  const handleSearchMovie = () => {
+    fetch(
+      `http://www.omdbapi.com/?apikey=${
+        import.meta.env.VITE_API_KEY_API
+      }&s=${search}`
+    )
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Erreur réseau");
+        }
+      })
+      .then((data) => {
+        console.log(data); // Affiche les informations sur les films dans la console
+        setMovies(data.Search);
+      })
+      .catch((error) => {
+        console.error("Erreur:", error);
+      });
+  };
+  console.log(movies, "movies");
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <header>
+        <div className="container-search">
+          <Input
+            value={search}
+            className="input-text"
+            placeholder="Recherche un film ou série"
+            type="text"
+            onChange={(e: any) => setSearch(e.target.value)}
+          />
+          <Button onClick={handleSearchMovie} />
+        </div>
+      </header>
+      <div className="container-movies">
+        {movies &&
+          movies.map((movie: any) => (
+            <>
+              <img src={movie.Poster} alt={movie.Title} />
+              <div> Titre : {movie.Title} </div>
+              <div> Année : {movie.Year} </div>
+            </>
+          ))}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
