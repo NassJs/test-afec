@@ -5,6 +5,10 @@ export const Home = () => {
   const [search, setSearch] = useState("");
   const [movies, setMovies] = useState<[] | undefined>([]);
 
+  const handleOnClick = () => {
+    console.log("click");
+  };
+
   const handleSearchMovie = () => {
     fetch(
       `http://www.omdbapi.com/?apikey=${

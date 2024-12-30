@@ -1,3 +1,4 @@
+import { MouseEventHandler } from "react";
 import "./css/Card.css";
 
 type CardProps = {
@@ -5,10 +6,11 @@ type CardProps = {
   description: string;
   alt?: string;
   image: string;
+  onClick?: MouseEventHandler<HTMLDivElement> | undefined;
 };
-export const Card = ({ title, description, image }: CardProps) => {
+export const Card = ({ title, description, image, onClick }: CardProps) => {
   return (
-    <div className="card-movies">
+    <div onClick={onClick} className="card-movies">
       <img className="img-movies" src={image} alt="card" />
       <div className="card-content">
         <h2 className="card-title">{title}</h2>

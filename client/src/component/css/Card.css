@@ -15,6 +15,11 @@
     transition: 0.3s;
     background-color: rgb(239, 241, 235);
 }
+.card-movies:hover{
+    cursor: pointer;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
 .card-title{
     font-size: 20px;
     font-weight: bold;
