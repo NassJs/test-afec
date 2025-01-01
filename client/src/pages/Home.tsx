@@ -1,13 +1,10 @@
 import { useState } from "react";
 import { Movies } from "../container/Movies";
-import { Header } from "../component/header";
+import { Header } from "../component/Header";
+
 export const Home = () => {
   const [search, setSearch] = useState("");
   const [movies, setMovies] = useState<[] | undefined>([]);
-
-  const handleOnClick = () => {
-    console.log("click");
-  };
 
   const handleSearchMovie = () => {
     fetch(

@@ -1,5 +1,5 @@
 import { MouseEventHandler } from "react";
-import "./css/Card.css";
+import "../css/Card.css";
 
 type CardProps = {
   title: string;
