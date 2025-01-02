@@ -21,13 +21,14 @@ npm install
 2. Variables d'environnement
 Créez un fichier .env à la racine du projet et ajoutez les variables d'environnement suivantes :
 
-MONGO_ROOT_USER=<votre_utilisateur_mongo>
-MONGO_ROOT_PASSWORD=<votre_mot_de_passe_mongo>
-MONGO_INITDB_DATABASE=<nom_de_votre_base_de_données>
-PORT=<port_du_serveur>
-MONGO_URI=<uri_de_connexion_mongodb>
+MONGO_ROOT_USER:'mongoUser',
+MONGO_ROOT_PASSWORD: 'mongoPassword',
+MONGO_INITDB_DATABASE: 'productsdb',
+PORT: '5001',
+MONGO_URI: 'mongodb://mongo:27017/productsdb'
 
-3. Lancer le projet
+
+1. Lancer le projet
 Utiliser Docker
 Ouvrez un terminal et positionnez-vous dans le répertoire /test-afec/api. Ensuite, exécutez la commande suivante pour démarrer l'API ainsi que la base de données MongoDB :
 
